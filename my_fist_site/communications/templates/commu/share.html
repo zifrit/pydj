@@ -1,0 +1,18 @@
+{% extends 'commu/base.html' %}
+{% block title %}поделиться статьей {% endblock %}
+
+{% block content %}
+    {% if sent %}
+        <h1>сообщение успешно отправлено</h1>
+        <p>
+            {{ post.title}} было успешно отправлено в адрес {{ form.cleaned_date.to}}
+        </p>
+    {% else %}
+        <h1>поделиться статьей '{{ post.title }}'</h1>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="отправить">
+        </form>
+    {% endif %}
+{% endblock %}

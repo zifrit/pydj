@@ -7,4 +7,35 @@
             Published {{ post.publish }} by {{ post.author }}
         </p>
     {{ post.body|linebreaks}}
+    <p>
+        <a class="btn btn-primary" href='{% url "communications:post_share" post.id%}'>кнопка</a>
+    </p>
+ {% with comments.count as total_comments %}
+    <h2>
+        {{ total_comments }} комментариев {{ total_comments }}
+    </h2>
+ {% endwith %}
+    {% for comment in comments %}
+    <div class ='comment'>
+        <p class ='info'>
+            комментарий №{{ forloop.counter }} оставлен {{ comment.name }}
+            {{ comment.created }}
+        </p>
+        {{ comment.body|linebreaks }}
+    </div>
+    {% empty %}
+    <p>
+        нету статей
+    </p>
+    {% endfor %}
+    {% if new_comment %}
+        <h2>ваш комментарий добавлен</h2>
+    {% else %}
+        <h2>добавить новый комментарий</h2>
+        <form method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit">добавить комментарий </p>
+        </form>
+    {% endif %}
 {% endblock %}

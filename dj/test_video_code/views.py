@@ -46,5 +46,30 @@ def element_to_zodiac(request, element_to_zodiac):
 
 
 def month_to_zodiac(request, month, day):
-    return render(request, 'test_video_code/element_to_zodiac.html',
-                  {'elements_zodiac': elements_zodiac[element_to_zodiac]})
+    if (day >= 22 and month == 12) or (day <= 20 and month == 1):
+        zodiac = zodiac_signs['Capricorn']
+    elif (day >= 21 and month == 1) or (day <= 19 and month == 2):
+        zodiac = zodiac_signs['Aquarius']
+    elif (20 <= day < 28 and month == 2) or (day <= 20 and month == 3):
+        zodiac = zodiac_signs['Pisces']
+    elif (day >= 21 and month == 3) or (day <= 20 and month == 4):
+        zodiac = zodiac_signs['Aries']
+    elif (day >= 21 and month == 4) or (day <= 21 and month == 5):
+        zodiac = zodiac_signs['Taurus']
+    elif (day >= 22 and month == 5) or (day <= 21 and month == 6):
+        zodiac = zodiac_signs['Gemini']
+    elif (day >= 22 and month == 6) or (day <= 23 and month == 7):
+        zodiac = zodiac_signs['Cancer']
+    elif (day >= 24 and month == 7) or (day <= 23 and month == 8):
+        zodiac = zodiac_signs['Leo']
+    elif (day >= 24 and month == 8) or (day <= 23 and month == 9):
+        zodiac = zodiac_signs['Virgo']
+    elif (day >= 24 and month == 9) or (day <= 23 and month == 10):
+        zodiac = zodiac_signs['Libra']
+    elif (day >= 24 and month == 10) or (day <= 23 and month == 11):
+        zodiac = zodiac_signs['Scorpio']
+    elif (day >= 23 and month == 11) or (day <= 21 and month == 12):
+        zodiac = zodiac_signs['Sagittarius']
+    else:
+        zodiac = 'нету такого знака зодиака'
+    return render(request, 'test_video_code/zodiacs.html', {'zodiac': zodiac})

@@ -16,6 +16,13 @@ zodiac_signs = {
     'Pisces': 'Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).',
 }
 
+elements_zodiac = {
+    'Fire': ['Aries', 'Leo', 'Sagittarius'],
+    'Earth': ['Taurus', 'Virgo', 'Capricorn'],
+    'Air': ['Gemini', 'Libra', 'Aquarius'],
+    'Water': ['Cancer', 'Scorpio', 'Pisces'],
+}
+
 
 def zodiac(request, name_zodiac):
     namezodiac = list(zodiac_signs)
@@ -28,3 +35,16 @@ def zodiac(request, name_zodiac):
 def main(request):
     return render(request, 'test_video_code/href_zodiac.html', {'zodiac_signs': zodiac_signs})
 
+
+def element_zodiac(request):
+    return render(request, 'test_video_code/element_zodiac.html', {'elements_zodiac': elements_zodiac})
+
+
+def element_to_zodiac(request, element_to_zodiac):
+    return render(request, 'test_video_code/element_to_zodiac.html',
+                  {'elements_zodiac': elements_zodiac[element_to_zodiac]})
+
+
+def month_to_zodiac(request, month, day):
+    return render(request, 'test_video_code/element_to_zodiac.html',
+                  {'elements_zodiac': elements_zodiac[element_to_zodiac]})
